@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/ui/Container.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import Button from '../components/ui/Button.astro';
+import { Phone } from 'lucide-react';
+import { business } from '../data/business';
+---
+
+<BaseLayout
+  title={`Page Not Found | ${business.name}`}
+  description={`The page you're looking for doesn't exist. Head back to ${business.name} or call our 24-hour hotline for help.`}
+  noIndex={true}
+>
+  <section class="bg-white py-24 sm:py-32">
+    <Container class="mx-auto max-w-2xl text-center">
+      <Eyebrow class="justify-center">404</Eyebrow>
+      <h1 class="font-display text-ink-900 mt-4 text-4xl font-bold text-balance sm:text-5xl">
+        This Page Sprung a Leak
+      </h1>
+      <p class="text-ink-600 mt-5 text-lg leading-relaxed text-balance">
+        We couldn't find the page you were looking for. It may have moved, or the link might be broken. Let's get you
+        back on track.
+      </p>
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <Button href="/" size="lg">Back to Home</Button>
+        <Button href="/services/" variant="secondary" size="lg" icon={false}>Browse Services</Button>
+      </div>
+      <p class="text-ink-500 mt-8 text-sm">
+        Have a plumbing emergency instead?{' '}
+        <a
+          href={`tel:${business.hotline.tel}`}
+          class="inline-flex items-center gap-1.5 font-semibold text-pink-600 underline underline-offset-2 hover:text-pink-700"
+        >
+          <Phone className="size-3.5" aria-hidden="true" />
+          Call {business.hotline.display}
+        </a>
+      </p>
+    </Container>
+  </section>
+</BaseLayout>
