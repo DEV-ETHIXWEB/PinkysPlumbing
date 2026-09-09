@@ -82,7 +82,7 @@ interface SpecularButtonProps {
   proximity?: number;
   autoAnimate?: boolean;
   disabled?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
   className?: string;
   type?: 'button' | 'submit' | 'reset';
 }
@@ -290,7 +290,13 @@ export default function SpecularButton({
 
   if (href) {
     return (
-      <a ref={btnRef as React.RefObject<HTMLAnchorElement>} href={href} className={classes} style={style}>
+      <a
+        ref={btnRef as React.RefObject<HTMLAnchorElement>}
+        href={href}
+        onClick={onClick}
+        className={classes}
+        style={style}
+      >
         <span ref={fxRef} className="specular-button__fx" aria-hidden="true" />
         <span className="specular-button__label">{children}</span>
       </a>

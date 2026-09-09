@@ -219,9 +219,13 @@ const CardSwap = ({
         node?.removeEventListener('mouseenter', pause);
         node?.removeEventListener('mouseleave', resume);
         clearInterval(intervalRef.current);
+        tlRef.current?.kill();
       };
     }
-    return () => clearInterval(intervalRef.current);
+    return () => {
+      clearInterval(intervalRef.current);
+      tlRef.current?.kill();
+    };
     // Intentionally omits `refs`/`onCardClick`/`config`: refs are stable
     // per childArr.length (see above), onCardClick is read fresh via
     // closure each swap, and config is derived from `easing`, already listed.
